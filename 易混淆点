@@ -1,0 +1,55 @@
+关于Java中length、length()、size()的区别
+
+https：//blog.csdn.net/qq_33236248/article/details/79884874
+作者：张小烦一点都不烦（csdn）
+
+首先区分一下length和length()；
+
+1.length不是方法，是属性，数组的属性；
+public static void main(String[] args) {
+  int[] intArray = {1,2,3};	
+  System.out.println("这个数组的长度为：" + intArray.length);
+  }
+  
+2.length()是字符串String的一个方法；
+public static void main(String[] args) {
+  String str = "HelloWorld";
+  System.out.println("这个字符串的长度为：" + str.length());
+  }
+进入length()方法看一下实现
+private final char value[];
+public int length() {
+  return value.length;    
+}
+注释中的解释是@return     the length of the sequence of characters represented by this object.
+即由该对象所代表的字符序列的长度，所以归根结底最后要找的还是length这个底层的属性；
+
+3.size()方法，是List集合的一个方法；
+public static void main(String[] args) {
+  List<String> list = new ArrayList<String>();	
+  list.add("a");	
+  list.add("b");	
+  list.add("c");	
+  System.out.println("这个list的长度为：" + list.size());
+  }
+在List的方法中，是没有length()方法的；
+也看一段ArrayList的源码
+private final E[] a; 
+ArrayList(E[] array) {
+  if (array==null)
+  throw new NullPointerException();
+  a = array;
+  } 
+public int size() {
+  return a.length;
+}
+由这段就可以看出list的底层实现其实就是数组，size()方法最后要找的其实还是数组的length属性；
+另外，除了List，Set和Map也有size()方法，所以准确说size()方法是针对集合而言。
+
+总结：length——数组的属性；
+length()——String的方法；
+size()——集合的方法；
+谨记。
+————————————————
+版权声明：本文为CSDN博主「张小烦一点都不烦」的原创文章，遵循 CC 4.0 BY-SA 版权协议，转载请附上原文出处链接及本声明。
+原文链接：https://blog.csdn.net/qq_33236248/article/details/79884874
