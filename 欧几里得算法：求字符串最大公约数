@@ -1,0 +1,15 @@
+    public String gcdOfStrings(String str1, String str2) {
+    //如果str1和str2有公约数，必然有str1=M*x；str2=N*x，其中x为约数；
+    //也就是说两者满足同样约数的自循环；
+    //即能满足str1+str2==str2+str1;
+        if (!(str1 + str2).equals(str2 + str1)) {
+            return "";
+        }
+        //返回  截取的最大公约数长度的字符串
+        return str1.substring(0, gcd(str1.length(), str2.length()));
+    }
+    //欧几里得算法
+    private int gcd(int a, int b) {
+        //条件运算符：三目运算符；
+        return b == 0? a: gcd(b, a % b);
+    }
