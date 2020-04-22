@@ -1,0 +1,7 @@
+关于去重
+一般只需要在 
+Select 后紧跟 distinct 即可实现对参数的去重
+eg：select distinct name,age from table_name;
+但是 这样子的去重是针对name和age都相同的才有效，如果对某一项需要去重的话
+可以在最后 加上 group by 参数
+eg：select distinct name,age from table_name  group by name;
